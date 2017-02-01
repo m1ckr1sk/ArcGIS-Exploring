@@ -1,0 +1,35 @@
+﻿<Window x:Class="ArcGISAppTut1.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:esri="http://schemas.esri.com/arcgis/runtime/2013"
+        xmlns:local="clr-namespace:ArcGISAppTut1"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="525" Width="790">
+    <Window.Resources>
+        <local:MapViewModel x:Key="MapViewModel" />
+    </Window.Resources>
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="300"/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+        <Grid Grid.Column="0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="75"/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+            <TextBlock Text="Basemap:"
+            VerticalAlignment="Top" HorizontalAlignment="Right"
+            Margin="10"/>
+            <ListBox x:Name="BasemapListBox" 
+            Grid.Column="1"
+            ItemsSource="{Binding BasemapChoices, Source={StaticResource MapViewModel}}"
+            VerticalAlignment="Top" HorizontalAlignment="Left"
+            Height="250" Width="190"
+            Margin="10"/>
+        </Grid>
+        <esri:MapView Map="{Binding Map, Source={StaticResource MapViewModel}}" Grid.Column="1"/>
+    </Grid>
+</Window>
